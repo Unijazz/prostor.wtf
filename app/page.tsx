@@ -166,16 +166,16 @@ const JoinSection = () => (
         </p>
         <p>
           Pokud máš chuť se v Prostoru a případně v další činnosti Unijazzu
-          Boskovice angažovat, neváhej požádat o členství. Vše potřebné je možné
-          vyřídit v{" "}
+          Boskovice angažovat, neváhej:
+        </p>
+        <div className="mt-2">
           <a
-            className="typo-link"
+            className="bg-gravel text-white p-2 px-4 rounded-xl"
             href="https://airtable.com/approUUMf4GjsMYRD/shrfndoKWDub91wzT"
           >
-            registračním formuláři pro členy spolku
+            Chci se přidat!
           </a>
-          .
-        </p>
+        </div>
       </div>
     </div>
   </section>
