@@ -1,3 +1,35 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/*
+ * Commonly used Tailwind shorthands.
+ *
+ * NOTE: Avoid premature abstraction here:
+ * https://tailwindcss.com/docs/reusing-styles
+ */
+
+@layer components {
+  /*
+   * Typography
+   * Inspired by https://developer.apple.com/design/human-interface-guidelines/typography
+   */
+  .typo-title {
+    @apply text-4xl font-bold uppercase;
+  }
+  .typo-title2 {
+    @apply text-3xl font-bold uppercase;
+  }
+  .typo-title3 {
+    @apply text-2xl font-bold uppercase;
+  }
+  .typo-subtitle {
+    @apply text-2xl;
+  }
+  .typo-caption {
+    @apply text-sm;
+  }
+  .typo-link {
+    @apply underline underline-offset-2;
+  }
+}
