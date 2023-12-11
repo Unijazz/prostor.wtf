@@ -2,9 +2,7 @@ import type { Metadata } from "next";
 import { Footer } from "../components/Footer";
 
 import "./globals.css";
-import { FacebookLink, InstagramLink } from "@/components/Social";
-import Images from "@/components/images";
-import { LogoType, O, Prostor } from "@/components/Logo";
+import { LogoType } from "@/components/Logo";
 
 export const metadata: Metadata = {
   title: "Prostor | Kafe, Kultura, Komunita",
