@@ -1,9 +1,7 @@
-import { Route } from "@/src/routing";
-import Image from "next/image";
-import Images from "@/components/images";
+import { FacebookLink, InstagramLink } from "@/components/Social";
 
 export const Footer = () => (
-  <footer className="bg-gravel text-white pt-10 pb-20">
+  <footer className="bg-gravel text-white mt-20 pt-10 pb-20">
     <section className="max-w-content m-auto grid grid-cols-3 gap-7">
       <ul className="typo-rule border-white">
         <li>Unijazz, pobočný spolek Boskovice</li>
@@ -54,12 +52,8 @@ export const Footer = () => (
         />
       </div>
       <div className="typo-rule border-white flex flex-row gap-4">
-        <a href={Route.facebook}>
-          <Image src={Images.Facebook} width={15} height={30} alt="Facebook" />
-        </a>
-        <a href={Route.instagram}>
-          <Image src={Images.Instagram} width={30} height={30} alt="Facebook" />
-        </a>
+        <FacebookLink />
+        <InstagramLink />
       </div>
     </section>
   </footer>

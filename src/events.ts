@@ -108,10 +108,7 @@ function unwrapEventPage(page: EventPage): Event {
 // Helpers
 //
 
-const stripAccents = (s: string) =>
-  s.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-
-const normalizeGenre = (s: string) => stripAccents(s).toLowerCase();
+const normalizeGenre = (s: string) => s.toLowerCase();
 
 const daysBetweenDays = (a: Date, b: Date) => (+a - +b) / (1000 * 60 * 60 * 24);
 

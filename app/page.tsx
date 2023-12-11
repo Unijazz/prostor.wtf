@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 const Page = async () => {
   const events = await allFutureEvents();
   return (
-    <main className="m-auto max-w-content py-20 flex flex-col gap-20">
+    <main className="m-auto max-w-content flex flex-col gap-20">
       <IntroSection />
       <EventsSection events={events} />
       <SupportSection />
@@ -24,7 +24,6 @@ const Page = async () => {
 
 const IntroSection = () => (
   <section>
-    <h1 className="typo-title mb-8 text-center">Prostor</h1>
     <div className="grid grid-cols-2 gap-7">
       <p className="typo-rule">{metadata.description}</p>
       <div className="typo-rule flex flex-col gap-2">
