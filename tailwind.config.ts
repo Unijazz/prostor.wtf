@@ -8,9 +8,11 @@ const config: Config = {
   theme: {
     extend: {
       maxWidth: {
-        content: "1200px",
+        content: "1000px",
       },
-      colors: {},
+      colors: {
+        gravel: "#2d2d2d",
+      },
     },
   },
 };

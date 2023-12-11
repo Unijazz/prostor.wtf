@@ -32,4 +32,11 @@
   .typo-link {
     @apply underline underline-offset-2;
   }
+  .typo-rule {
+    @apply pl-4 border-gravel border-l-2;
+  }
+}
+
+body {
+  color: #2d2d2d;
 }
