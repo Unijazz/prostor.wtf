@@ -37,17 +37,6 @@ const IntroSection = () => (
           </a>
           .
         </p>
-        <p>
-          Podrobnější informace o aktuálním dění sledujte na našich profilech na{" "}
-          <a href={Route.facebook} className="typo-link">
-            Facebooku
-          </a>{" "}
-          a{" "}
-          <a href={Route.instagram} className="typo-link">
-            Instagramu
-          </a>
-          .
-        </p>
       </div>
     </div>
   </section>
@@ -157,7 +146,7 @@ const JoinSection = () => (
           Stát se členem spolku Unijazz Boskovice zahrnuje nejrůznější konkrétní
           výhody:
         </p>
-        <ul className="list-disc list-inside">
+        <ul className="list-disc list-outside ml-4">
           <li>
             možnost uspořádat si soukromou akci v Prostoru za zvýhodněných
             podmínek
