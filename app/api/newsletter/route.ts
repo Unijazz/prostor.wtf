@@ -1,6 +1,8 @@
 import { Event, allFutureEvents } from "@/src/events";
 import { ContentType } from "@/src/utils";
 
+export const dynamic = "force-dynamic";
+
 export async function GET(): Promise<Response> {
   const events = await allFutureEvents();
   const html = events

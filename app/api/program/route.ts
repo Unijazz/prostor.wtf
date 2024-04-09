@@ -1,6 +1,8 @@
 import { allFutureEvents } from "@/src/events";
 import { ContentType } from "@/src/utils";
 
+export const dynamic = "force-dynamic";
+
 export async function GET(): Promise<Response> {
   const formatDate = (d: Date) =>
     d.toLocaleDateString("cs-CZ", {
