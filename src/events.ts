@@ -15,6 +15,7 @@ import {
   titleProp,
   urlProp,
 } from "@/src/notion";
+import { map } from "./utils";
 
 process.env.TZ = "Europe/Prague";
 
@@ -122,7 +123,3 @@ const categorizeDate = (d: Date) => {
     return "připravujeme";
   }
 };
-
-function map<T, U>(f: (t: T) => U, val: T | null): U | null {
-  return val != null ? f(val) : null;
-}

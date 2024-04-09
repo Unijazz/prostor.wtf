@@ -1,4 +1,5 @@
 import { Event, allFutureEvents } from "@/src/events";
+import { ContentType } from "@/src/utils";
 
 export async function GET(): Promise<Response> {
   const events = await allFutureEvents();
@@ -10,7 +11,7 @@ export async function GET(): Promise<Response> {
   return new Response(html, {
     status: 200,
     headers: {
-      "Content-Type": "text/html; charset=UTF-8",
+      "Content-Type": ContentType.html,
     },
   });
 }

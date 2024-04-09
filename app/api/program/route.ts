@@ -1,4 +1,5 @@
 import { allFutureEvents } from "@/src/events";
+import { ContentType } from "@/src/utils";
 
 export async function GET(): Promise<Response> {
   const formatDate = (d: Date) =>
@@ -18,7 +19,7 @@ export async function GET(): Promise<Response> {
   return new Response(JSON.stringify(events, null, 2), {
     status: 200,
     headers: {
-      "Content-Type": "application/json; charset=UTF-8",
+      "Content-Type": ContentType.json,
       "Cache-Control": "s-maxage=300, stale-while-revalidate",
     },
   });
