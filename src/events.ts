@@ -51,7 +51,6 @@ export interface Event {
   vstupne: number | null;
   doporuceneVstupne: number | null;
   zanr: string | null;
-  streaming: boolean | null;
   promo: boolean;
   zverejnit: boolean;
   zruseno: boolean;
@@ -94,7 +93,6 @@ function unwrapEventPage(page: EventPage): Event {
     info: p.info.value.at(0)?.plainText || null,
     fb: p.fb.value,
     zanr: map(normalizeGenre, p.zanr.select?.name || null),
-    streaming: false,
     vstupenky: p.vstupenky.value,
     vstupne: p.vstupne.value,
     doporuceneVstupne: p.doporuceneVstupne?.value || null,

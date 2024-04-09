@@ -1,33 +1,17 @@
-import type { Metadata } from "next";
-import { Footer } from "../components/Footer";
-
-import "./globals.css";
-import { LogoType } from "@/components/Logo";
-
-export const metadata: Metadata = {
-  title: "Prostor | Kafe, Kultura, Komunita",
-};
-
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  return (
-    <html lang="cs">
-      <body>
-        <Header />
-        {children}
-        <Footer />
-      </body>
-    </html>
-  );
-}
-
-const Header = () => (
-  <header className="bg-gravel flex flex-row p-8 mb-10">
-    <div className="h-[40px] m-auto">
-      <LogoType />
-    </div>
-  </header>
+const Layout = ({ children }: { children: React.ReactNode }) => (
+  <html lang="cs">
+    <head>
+      <meta charSet="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <title>Prostor Developer Tools™</title>
+      <link rel="stylesheet" href="https://fonts.xz.style/serve/inter.css" />
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css"
+      />
+    </head>
+    <body>{children}</body>
+  </html>
 );
+
+export default Layout;
