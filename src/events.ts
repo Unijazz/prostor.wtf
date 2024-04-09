@@ -5,6 +5,7 @@ import {
   field,
   literal,
   record,
+  string,
 } from "typescript-json-decoder";
 import {
   checkboxProp,
@@ -22,6 +23,7 @@ process.env.TZ = "Europe/Prague";
 type EventPage = decodeType<typeof decodeEventPage>;
 const decodeEventPage = record({
   object: literal("page"),
+  id: string,
   props: field(
     "properties",
     record({
@@ -42,6 +44,7 @@ const decodeEventPage = record({
 });
 
 export interface Event {
+  id: string;
   jmeno: string | null;
   datum: string | null;
   datumPresne: Date | null;
@@ -87,6 +90,7 @@ export async function allFutureEvents(
 function unwrapEventPage(page: EventPage): Event {
   const p = page.props;
   return {
+    id: page.id,
     jmeno: p.jmeno.value.at(0)?.plainText || null,
     datum: p.datum?.value.at(0)?.plainText || null,
     datumPresne: p.datumPresne?.date?.start || null,
