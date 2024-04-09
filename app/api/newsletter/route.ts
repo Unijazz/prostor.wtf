@@ -12,6 +12,7 @@ export async function GET(): Promise<Response> {
     status: 200,
     headers: {
       "Content-Type": ContentType.html,
+      "Cache-Control": "s-maxage=300, stale-while-revalidate",
     },
   });
 }
