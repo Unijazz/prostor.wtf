@@ -16,7 +16,7 @@ import {
   titleProp,
   urlProp,
 } from "@/src/notion";
-import { map } from "./utils";
+import { notEmpty } from "./utils";
 
 process.env.TZ = "Europe/Prague";
 
@@ -45,17 +45,16 @@ const decodeEventPage = record({
 
 export interface Event {
   id: string;
-  jmeno: string | null;
-  datum: string | null;
-  datumPresne: Date | null;
-  sekce: string | null;
-  info: string | null;
-  fb: string | null;
-  vstupenky: string | null;
-  vstupne: number | null;
-  doporuceneVstupne: number | null;
-  zanr: string | null;
-  promo: boolean;
+  jmeno: string;
+  datumPresne: Date;
+  datum?: string;
+  sekce: string;
+  info?: string;
+  fb?: string;
+  vstupenky?: string;
+  vstupne?: number;
+  doporuceneVstupne?: number;
+  zanr?: string;
   zverejnit: boolean;
   zruseno: boolean;
 }
@@ -74,7 +73,8 @@ export async function allFutureEvents(
     })
     .then(decodeQueryResponse)
     .then((response) => response.results)
-    .then((pages) => pages.map(unwrapEventPage));
+    .then((pages) => pages.map(unwrapEventPage))
+    .then((events) => events.filter(notEmpty));
 
   return (
     events
@@ -87,21 +87,31 @@ export async function allFutureEvents(
   );
 }
 
-function unwrapEventPage(page: EventPage): Event {
+function unwrapEventPage(page: EventPage): Event | undefined {
   const p = page.props;
+
+  const jmeno = p.jmeno.value.at(0)?.plainText;
+  const datumPresne = p.datumPresne?.date?.start;
+  const zanr = p.zanr.select?.name;
+
+  if (!jmeno || !datumPresne) {
+    return undefined;
+  }
+
+  const sekce = categorizeDate(datumPresne);
+
   return {
     id: page.id,
-    jmeno: p.jmeno.value.at(0)?.plainText || null,
-    datum: p.datum?.value.at(0)?.plainText || null,
-    datumPresne: p.datumPresne?.date?.start || null,
-    sekce: map(categorizeDate, p.datumPresne?.date?.start || null),
-    info: p.info.value.at(0)?.plainText || null,
-    fb: p.fb.value,
-    zanr: map(normalizeGenre, p.zanr.select?.name || null),
-    vstupenky: p.vstupenky.value,
-    vstupne: p.vstupne.value,
-    doporuceneVstupne: p.doporuceneVstupne?.value || null,
-    promo: p.promo.value,
+    jmeno,
+    datumPresne,
+    sekce,
+    datum: p.datum?.value.at(0)?.plainText,
+    info: p.info.value.at(0)?.plainText,
+    fb: p.fb.value ?? undefined,
+    zanr: zanr ? normalizeGenre(zanr) : undefined,
+    vstupenky: p.vstupenky.value ?? undefined,
+    vstupne: p.vstupne.value ?? undefined,
+    doporuceneVstupne: p.doporuceneVstupne?.value || undefined,
     zverejnit: p.zverejnit.value,
     zruseno: p.zruseno.value,
   };
@@ -111,7 +121,8 @@ function unwrapEventPage(page: EventPage): Event {
 // Helpers
 //
 
-const normalizeGenre = (s: string) => s.toLowerCase();
+const normalizeGenre = (s: string) =>
+  s.slice(0, 1).toLocaleUpperCase() + s.slice(1).toLocaleLowerCase();
 
 const daysBetweenDays = (a: Date, b: Date) => (+a - +b) / (1000 * 60 * 60 * 24);
 
