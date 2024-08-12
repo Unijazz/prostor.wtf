@@ -48,6 +48,7 @@ export interface Event {
   jmeno: string;
   datumPresne: Date;
   datum?: string;
+  ukazujCas: boolean;
   sekce: string;
   info?: string;
   fb?: string;
@@ -104,6 +105,7 @@ function unwrapEventPage(page: EventPage): Event | undefined {
     id: page.id,
     jmeno,
     datumPresne,
+    ukazujCas: !datumPresne.toISOString().endsWith("T00:00:00.000Z"),
     sekce,
     datum: p.datum?.value.at(0)?.plainText,
     info: p.info.value.at(0)?.plainText,
